@@ -5,15 +5,16 @@ const connectDB = require('./lib/db');
 const users = require('./routes/usersRoutes');
 const path = require('path');
 const pdfRoutes = require('./routes/pdfRoutes');
-const {logger} = require('./middlewares/logger');
+const {requestLogger} = require('./middlewares/logger');
+const dotenv = require('dotenv')
 
-
+dotenv.config();
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(logger);
+app.use(requestLogger);
 
 app.use('/api/users', users);
 app.use('/api/pdf', pdfRoutes);

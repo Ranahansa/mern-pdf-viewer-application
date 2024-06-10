@@ -21,4 +21,4 @@ const requestLogger = (req, res, next) => {
     next();
 }
 
-module.exports = {logger: requestLogger};
+module.exports = { requestLogger };
