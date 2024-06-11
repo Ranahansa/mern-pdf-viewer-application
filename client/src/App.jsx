@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Register from './components/Register'
 import Login from './components/Login';
+import UploadPdf from './components/UploadPdf';
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/upload" element={<UploadPdf />} />
         </Routes>
       </div>
     </Router>
