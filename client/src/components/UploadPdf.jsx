@@ -12,12 +12,13 @@ function UploadPdf() {
         formData.append('pdf', file);
 
         try {
-            const response = await axios.post('/api/pdf', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': `Bearer ${token}`
-                }
-            });
+            const token = localStorage.getItem('token'); 
+            const headers = {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${token}` 
+            };
+
+            const response = await axios.post('/api/pdf', formData, { headers });
             console.log(response.data);
             navigate('/view-pdfs');
         } catch (error) {
