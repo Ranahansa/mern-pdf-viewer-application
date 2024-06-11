@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const history = useHistory;
+    const history = useHistory();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
