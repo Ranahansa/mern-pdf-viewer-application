@@ -34,4 +34,3 @@ function ViewPdfs() {
 }
 
 export default ViewPdfs;
-
