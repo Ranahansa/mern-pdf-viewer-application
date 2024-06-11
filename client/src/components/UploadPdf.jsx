@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
 import axios from '../utils/axios';
+import { useHistory } from 'react-router-dom';
 
 function UploadPdf() {
-    const [pdf, setPdf] = useState(null);
-
-    const handleFileChange = (e) => {
-        setPdf(e.target.files[0]);
-    };
+    const [file, setFile] = useState(null);
+    const history = useHistory();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('pdf', pdf);
+        formData.append('pdf', file);
 
         try {
             const response = await axios.post('/api/pdf', formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
+                    'Content-Type': 'multipart/form-data'
+                }
             });
             console.log(response.data);
+            history.push('/view-pdfs');
         } catch (error) {
             console.error(error);
         }
@@ -30,15 +29,10 @@ function UploadPdf() {
             <h1 className="mb-4 text-2xl font-bold">Upload PDF</h1>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="pdf">
-                        PDF File
-                    </label>
                     <input
                         type="file"
-                        id="pdf"
-                        accept=".pdf"
-                        onChange={handleFileChange}
-                        className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        onChange={(e) => setFile(e.target.files[0])}
+                        className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
                         required
                     />
                 </div>
@@ -54,3 +48,4 @@ function UploadPdf() {
 }
 
 export default UploadPdf;
+
