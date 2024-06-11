@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import axios from '../utils/axios';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post('/api/users/register', { username, password });
             console.log(response.data);
-            history.push('/login');
+            navigate('/login');
         } catch (error) {
             console.error(error.response ? error.response.data : error.message);
         }

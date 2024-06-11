@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from '../utils/axios';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function UploadPdf() {
     const [file, setFile] = useState(null);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,7 +18,7 @@ function UploadPdf() {
                 }
             });
             console.log(response.data);
-            history.push('/view-pdfs');
+            navigate('/view-pdfs');
         } catch (error) {
             console.error(error);
         }

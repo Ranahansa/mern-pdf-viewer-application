@@ -4,17 +4,19 @@ import Register from './components/Register'
 import Login from './components/Login';
 import UploadPdf from './components/UploadPdf';
 import ViewPdfs from './components/ViewPdfs';
+import PrivateRoute from './components/PrivateRoute';
 
 const App = () => {
   return (
     <Router>
       <div className="container px-4 mx-auto">
-        <Switch>
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
-          <PrivateRoute path="/upload" component={UploadPdf} />
-          <PrivateRoute path="/view" component={ViewPdfs} />
-        </Switch>
+        <Routes>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/upload" element={<PrivateRoute component={UploadPdf} />} />
+          <Route path="/view" element={<PrivateRoute component={ViewPdfs} />} />
+        </Routes>
+
       </div>
     </Router>
   )
