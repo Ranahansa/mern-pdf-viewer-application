@@ -13,6 +13,7 @@ function UploadPdf() {
 
         try {
             const token = localStorage.getItem('token'); 
+            console.log('Token retrieved:', token);
             const headers = {
                 'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${token}` 
