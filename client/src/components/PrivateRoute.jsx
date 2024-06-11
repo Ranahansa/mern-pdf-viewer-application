@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Route, Navigate } from 'react-router-dom';
 
@@ -7,13 +8,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     return (
         <Route
             {...rest}
-            render={(props) =>
-                isAuthenticated ? (
-                    <Component {...props} />
-                ) : (
-                        <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
-                )
-            }
+            element={isAuthenticated ? <Component /> : <Navigate to="/login" />}
         />
     );
 };
