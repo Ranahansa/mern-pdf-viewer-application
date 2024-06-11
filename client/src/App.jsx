@@ -13,8 +13,22 @@ const App = () => {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <PrivateRoute path="/upload" component={UploadPdf} />
-          <PrivateRoute path="/view" component={ViewPdfs} />
+          <Route
+            path="/upload"
+            element={
+              <PrivateRoute>
+                <UploadPdf />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/view"
+            element={
+              <PrivateRoute>
+                <ViewPdfs />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </div>
     </Router>
