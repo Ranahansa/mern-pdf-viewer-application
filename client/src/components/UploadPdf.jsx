@@ -14,7 +14,8 @@ function UploadPdf() {
         try {
             const response = await axios.post('/api/pdf', formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}`
                 }
             });
             console.log(response.data);
