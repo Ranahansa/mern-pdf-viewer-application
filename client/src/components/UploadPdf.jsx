@@ -22,10 +22,13 @@ function UploadPdf() {
 
             const response = await axios.post('/api/pdf', formData, {
                 headers,
-                onUploadProgress: (progressEvent) => {
+                onUploadProgress: async (progressEvent) => {
                     const { loaded, total } = progressEvent;
                     const percentage = Math.round((loaded * 100) / total);
-                    setUploadProgress(percentage);
+                    for (let i = uploadProgress; i <= percentage; i++) {
+                        await new Promise(resolve => setTimeout(resolve, 50));
+                        setUploadProgress(i);
+                    }
                 }
             });
             console.log(response.data);
