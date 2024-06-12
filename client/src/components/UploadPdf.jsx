@@ -25,7 +25,7 @@ function UploadPdf() {
                 onUploadProgress: (progressEvent) => {
                     const { loaded, total } = progressEvent;
                     const percentage = Math.round((loaded * 100) / total);
-                    setUploadProgress(progress);
+                    setUploadProgress(percentage);
                 }
             });
             console.log(response.data);
