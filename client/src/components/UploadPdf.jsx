@@ -21,7 +21,7 @@ function UploadPdf() {
 
             const response = await axios.post('/api/pdf', formData, { headers });
             console.log(response.data);
-            navigate('/view-pdfs');
+            navigate('/view');
         } catch (error) {
             console.error(error);
         }
