@@ -2,14 +2,15 @@ const path = require('path');
 const Pdf = require('../models/PdfModel');
 
 const uploadPdf = async (req, res) => {
-        if(!req.file){
+        if(!req.file || !req.body.title){
             return res.status(400).json({message: 'Pdf not uploaded'});
         }
 
         const pdf = new Pdf({
             user: req.user._id,
             filename: req.file.filename,
-            path: req.file.path
+            path: req.file.path,
+            title: req.body.title
         })
         try{
             await pdf.save();
@@ -49,12 +50,6 @@ const deletePdf = async (req, res) => {
         if (!pdf){
             return res.status(404).json({message: 'Pdf not found'});
         }
-        fs.unlink(path.resolve(pdf.path), (err) =>{
-            if(err){
-                return res.status(400).json({message:  'Failed to delete the PDF file'});
-            }
-        })
-
         await pdf.remove();
         return res.status(200).json({message: 'Pdf deleted successfully'});
 
