@@ -20,9 +20,7 @@ router.route('/')
 
 
 router.route('/:id' )
-    .get(protect, admin, viewPdf);
-
-router.route('/:id')
+    .get(protect, admin, viewPdf)
     .delete(protect, admin, deletePdf);
 
 module.exports = router
