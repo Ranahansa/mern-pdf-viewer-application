@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function UploadPdf() {
     const [file, setFile] = useState(null);
+    const [title, setTitle] = useState('');
     const [uploadProgress, setUploadProgress] = useState(0);
     const navigate = useNavigate();
 
@@ -11,6 +12,7 @@ function UploadPdf() {
         e.preventDefault();
         const formData = new FormData();
         formData.append('pdf', file);
+        formData.append('title', title);
 
         try {
             const token = localStorage.getItem('token');
@@ -42,6 +44,16 @@ function UploadPdf() {
         <div className="max-w-md mx-auto my-8">
             <h1 className="mb-4 text-2xl font-bold">Upload PDF</h1>
             <form onSubmit={handleSubmit}>
+                <div className="mb-4">
+                    <input
+                        type="text"
+                        placeholder="Title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                        required
+                    />
+                </div>
                 <div className="mb-4">
                     <input
                         type="file"
