@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function UploadPdf() {
     const [file, setFile] = useState(null);
+    const [uploadProgress, setUploadProgress] = useState(0);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -12,14 +13,21 @@ function UploadPdf() {
         formData.append('pdf', file);
 
         try {
-            const token = localStorage.getItem('token'); 
+            const token = localStorage.getItem('token');
             console.log('Token retrieved:', token);
             const headers = {
                 'Content-Type': 'multipart/form-data',
-                'Authorization': `Bearer ${token}` 
+                'Authorization': `Bearer ${token}`
             };
 
-            const response = await axios.post('/api/pdf', formData, { headers });
+            const response = await axios.post('/api/pdf', formData, {
+                headers,
+                onUploadProgress: (progressEvent) => {
+                    const { loaded, total } = progressEvent;
+                    const percentage = Math.round((loaded * 100) / total);
+                    setUploadProgress(progress);
+                }
+            });
             console.log(response.data);
             navigate('/view');
         } catch (error) {
@@ -39,6 +47,11 @@ function UploadPdf() {
                         required
                     />
                 </div>
+                {uploadProgress > 0 && (
+                    <div className="mb-4">
+                        <progress className="w-full" value={uploadProgress} max="100">{uploadProgress}%</progress>
+                    </div>
+                )}
                 <button
                     type="submit"
                     className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
