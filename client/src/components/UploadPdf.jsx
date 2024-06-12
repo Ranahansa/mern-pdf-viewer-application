@@ -28,7 +28,7 @@ function UploadPdf() {
                     const { loaded, total } = progressEvent;
                     const percentage = Math.round((loaded * 100) / total);
                     for (let i = uploadProgress; i <= percentage; i++) {
-                        await new Promise(resolve => setTimeout(resolve, 50));
+                        await new Promise(resolve => setTimeout(resolve, 100));
                         setUploadProgress(i);
                     }
                 }
