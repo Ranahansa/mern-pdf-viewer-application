@@ -50,10 +50,11 @@ const deletePdf = async (req, res) => {
         if (!pdf){
             return res.status(404).json({message: 'Pdf not found'});
         }
-        await pdf.remove();
+        await pdf.deleteOne();
         return res.status(200).json({message: 'Pdf deleted successfully'});
 
     } catch(err){
+        console.error('Error deleting PDF:', err);
         return res.status(400).json({message: err.message});
     }
 }
