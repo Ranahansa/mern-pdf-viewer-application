@@ -5,12 +5,17 @@ import Login from './components/Login';
 import UploadPdf from './components/UploadPdf';
 import ViewPdfs from './components/ViewPdfs';
 import PrivateRoute from './components/PrivateRoute';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Footer from './components/Footer';
 
 const App = () => {
   return (
     <Router>
       <div className="container px-4 mx-auto">
+        <Navbar />
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route element={<PrivateRoute />}>
@@ -18,6 +23,7 @@ const App = () => {
             <Route path="/view" element={<ViewPdfs />} />
           </Route>
         </Routes>
+        <Footer />
       </div>
     </Router>
   );
