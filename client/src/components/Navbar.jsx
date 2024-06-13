@@ -23,10 +23,16 @@ const Navbar = () => {
                         <div className="flex items-center ml-4 md:ml-6">
                             
                             <a
-                                href="/guest"
+                                href="/upload"
                                 className="px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-200"
                             >
-                                Guest
+                                Upload
+                            </a>
+                            <a
+                                href="/view"
+                                className="px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-200"
+                            >
+                                View Pdfs
                             </a>
                             <a
                                 href="/login"
