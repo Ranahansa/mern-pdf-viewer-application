@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import { FaTwitter, FaLinkedinIn, FaGithub, FaBlog } from 'react-icons/fa';
 
 const Footer = () => {
     return (
@@ -8,12 +8,12 @@ const Footer = () => {
                 <div className="py-8 md:flex md:items-center md:justify-between">
                     <div className="flex justify-center md:order-2">
                         <a
-                            href="https://www.facebook.com"
+                            href="https://github.com/Ranahansa"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-gray-600 hover:text-gray-800"
                         >
-                            <FaFacebookF className="mx-4" size={24} />
+                            <FaGithub className="mx-4" size={24} />
                         </a>
                         <a
                             href="https://twitter.com"
@@ -24,15 +24,15 @@ const Footer = () => {
                             <FaTwitter className="mx-4" size={24} />
                         </a>
                         <a
-                            href="https://www.instagram.com"
+                            href="https://thesevendigitaldiary.blogspot.com/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-gray-600 hover:text-gray-800"
                         >
-                            <FaInstagram className="mx-4" size={24} />
+                            <FaBlog className="mx-4" size={24} />
                         </a>
                         <a
-                            href="https://www.linkedin.com"
+                            href="https://www.linkedin.com/in/pathum-ranahansa-6a8966253/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-gray-600 hover:text-gray-800"
