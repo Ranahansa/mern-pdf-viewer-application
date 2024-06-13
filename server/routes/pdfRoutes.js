@@ -25,16 +25,16 @@ router.route('/:id' )
 
 
 
-router.get('/view/:id', protect, async (req, res) => {
-    try {
-        const pdf = await Pdf.findById(req.params.id);
-        if (!pdf) {
-            return res.status(404).json({ message: 'PDF not found' });
-        }
-        res.sendFile(path.resolve(pdf.path));
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
+// router.get('/view/:id', protect, async (req, res) => {
+//     try {
+//         const pdf = await Pdf.findById(req.params.id);
+//         if (!pdf) {
+//             return res.status(404).json({ message: 'PDF not found' });
+//         }
+//         res.sendFile(path.resolve(pdf.path));
+//     } catch (err) {
+//         res.status(500).json({ message: err.message });
+//     }
+// });
 
 module.exports = router
