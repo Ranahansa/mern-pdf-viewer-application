@@ -27,6 +27,7 @@ function Login({ setIsLoggedIn }) {
             console.log(response.data);
         } catch (error) {
             console.error(error);
+            alert('Login failed. Please check your credentials and try again.');
             // toast.error('Login failed. Please check your credentials and try again.', {
             //     position: toast.POSITION.TOP_RIGHT
             // });

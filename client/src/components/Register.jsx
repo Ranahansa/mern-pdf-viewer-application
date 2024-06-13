@@ -3,7 +3,6 @@ import axios from '../utils/axios';
 import { SlRocket } from 'react-icons/sl';
 import { IoIosEyeOff, IoIosEye } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
-import { FaGoogle, FaFacebookF, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import hero from '../assets/hero.png';
 
 const USER_MIN_LENGTH = 4;
@@ -14,16 +13,19 @@ const PWD_MAX_LENGTH = 20;
 function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [agreedToTerms, setAgreedToTerms] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
     const isUsernameValid = username.length >= USER_MIN_LENGTH && USER_REGEX.test(username);
     const isPasswordValid = password.length >= PWD_MIN_LENGTH && password.length <= PWD_MAX_LENGTH;
+    const isConfirmPasswordValid = password === confirmPassword;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!isUsernameValid || !isPasswordValid) {
+        if (!isUsernameValid || !isPasswordValid || !isConfirmPasswordValid || !agreedToTerms) {
             console.log('Invalid Entry');
             return;
         }
@@ -98,9 +100,9 @@ function Register() {
                         <div className="relative">
                             <input
                                 type={showPassword ? 'text' : 'password'}
-                                id="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                id="confirmPassword"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
                                 className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:ring"
                                 required
                             />
@@ -112,20 +114,24 @@ function Register() {
                                 {showPassword ? <IoIosEye /> : <IoIosEyeOff />}
                             </button>
                         </div>
-                        {password && !isPasswordValid && (
-                            <p className="mt-1 text-xs text-red-500">Password must be between 8-24 characters long.</p>
+                        {confirmPassword && !isConfirmPasswordValid && (
+                            <p className="mt-1 text-xs text-red-500">Passwords do not match.</p>
                         )}
                     </div>
                     <div className="flex items-center mb-4">
-                        <input type="checkbox" id="terms" required className="mr-2" />
+                        <input type="checkbox"
+                        id="terms" 
+                        checked={agreedToTerms}
+                        onChange={(e) => setAgreedToTerms(e.target.checked)}
+                        required className="mr-2" />
                         <label htmlFor="terms" className="text-sm">
                             I agree to the <a href="/terms" className="text-blue-600 hover:underline">terms of service</a> and <a href="/privacy" className="text-blue-600 hover:underline">privacy policy</a>.
                         </label>
                     </div>
                     <button
                         type="submit"
-                        disabled={!isUsernameValid || !isPasswordValid || !username || !password}
-                        className="w-full py-2 text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:ring disabled:opacity-50 disabled:cursor-not-allowed"
+                        disabled={!isUsernameValid || !isPasswordValid || !isConfirmPasswordValid || !username || !password || !confirmPassword || !agreedToTerms}
+                        className="w-full py-2 text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:ring disabled:opacity-30 disabled:cursor-not-allowed"
                     >
                         Sign Up
                     </button>

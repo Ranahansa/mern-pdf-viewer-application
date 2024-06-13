@@ -49,7 +49,7 @@ function ViewPdfs() {
                         <li key={pdf._id} className="flex items-center justify-between p-4 border-b">
                             <div>
                                 <p className="text-lg font-semibold">{pdf.title}</p>
-                                <a href={`/api/pdf/${pdf._id}`} className="text-blue-500 hover:underline">
+                                <a href={`http://localhost:5000/api/pdf/${pdf._id}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
                                     {pdf.filename}
                                 </a>
                             </div>
@@ -59,12 +59,6 @@ function ViewPdfs() {
                                     className="px-2 py-1 font-bold text-white bg-red-500 rounded hover:bg-red-700 focus:outline-none focus:ring"
                                 >
                                     Delete
-                                </button>
-                                <button
-                                    onClick={() => console.log(`Edit PDF ${pdf._id}`)}
-                                    className="px-2 py-1 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:ring"
-                                >
-                                    Edit
                                 </button>
                             </div>
                         </li>
