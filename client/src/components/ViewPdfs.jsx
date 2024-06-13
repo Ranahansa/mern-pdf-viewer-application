@@ -60,12 +60,6 @@ function ViewPdfs() {
                                 >
                                     Delete
                                 </button>
-                                <button
-                                    onClick={() => console.log(`Edit PDF ${pdf._id}`)}
-                                    className="px-2 py-1 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:ring"
-                                >
-                                    Edit
-                                </button>
                             </div>
                         </li>
                     ))}

@@ -4,14 +4,22 @@ import { useNavigate } from 'react-router-dom';
 import { SlRocket } from 'react-icons/sl';
 import upload from '../assets/upload.png';
 
+const MAX_FILE_SIZE = 5 * 1024 * 1024; 
+
 function UploadPdf() {
     const [file, setFile] = useState(null);
     const [title, setTitle] = useState('');
     const [uploadProgress, setUploadProgress] = useState(0);
+    const [fileSizeError, setFileSizeError] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (file && file.size > MAX_FILE_SIZE) {
+            setFileSizeError(true);
+            return;
+        }
+
         const formData = new FormData();
         formData.append('pdf', file);
         formData.append('title', title);
@@ -68,12 +76,18 @@ function UploadPdf() {
                         <div className="p-6 text-center border-2 border-gray-300 border-dashed">
                             <input
                                 type="file"
-                                onChange={(e) => setFile(e.target.files[0])}
+                                onChange={(e) => {
+                                    setFile(e.target.files[0]);
+                                    setFileSizeError(false);
+                                }}
                                 className="block w-full text-sm text-gray-900 cursor-pointer focus:outline-none"
                                 required
                             />
                             <p className="mt-2 text-gray-500">Upload your files here</p>
                             <p className="text-gray-500">.PDF</p>
+                            {fileSizeError && (
+                                <p className="mt-2 text-red-500">File size should be less than 5MB</p>
+                            )}
                         </div>
                     </div>
                     {uploadProgress > 0 && (
@@ -92,7 +106,8 @@ function UploadPdf() {
                         <button
                             onClick={handleSubmit}
                             type="submit"
-                            className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:ring"
+                            disabled={fileSizeError}
+                            className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:ring disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             Upload Files
                         </button>
