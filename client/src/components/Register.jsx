@@ -9,7 +9,7 @@ import hero from '../assets/hero.png';
 const USER_MIN_LENGTH = 4;
 const USER_REGEX = /^[a-zA-Z0-9]+$/;
 const PWD_MIN_LENGTH = 8;
-const PWD_MAX_LENGTH = 24;
+const PWD_MAX_LENGTH = 20;
 
 function Register() {
     const [username, setUsername] = useState('');
