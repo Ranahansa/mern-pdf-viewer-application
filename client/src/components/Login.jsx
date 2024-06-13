@@ -6,11 +6,18 @@ import { IoIosEyeOff, IoIosEye } from "react-icons/io";
 import 'react-toastify/dist/ReactToastify.css';
 import astro from '../assets/login.png';
 
-function Login() {
+function Login({ setIsLoggedIn }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
+
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setIsLoggedIn(false);
+        navigate('/');
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
