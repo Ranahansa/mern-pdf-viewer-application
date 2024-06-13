@@ -13,12 +13,6 @@ function Login({ setIsLoggedIn }) {
     const navigate = useNavigate();
 
 
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        setIsLoggedIn(false);
-        navigate('/');
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {

@@ -11,7 +11,6 @@ import Footer from './components/Footer';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -30,7 +29,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-          <Route element={<PrivateRoute />}>
+          <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
             <Route path="/upload" element={<UploadPdf />} />
             <Route path="/view" element={<ViewPdfs />} />
           </Route>
