@@ -83,7 +83,8 @@ function UploadPdf() {
                                 className="block w-full text-sm text-gray-900 cursor-pointer focus:outline-none"
                                 required
                             />
-                            <p className="mt-2 text-gray-500">Upload your files here</p>
+                            <p className="mt-2 text-gray-500">Upload your files here [File size should be less than <span className='text-red-500'> 5MB</span>]</p>
+                            
                             <p className="text-gray-500">.PDF</p>
                             {fileSizeError && (
                                 <p className="mt-2 text-red-500">File size should be less than 5MB</p>
