@@ -3,7 +3,6 @@ import axios from '../utils/axios';
 import { useNavigate } from 'react-router-dom';
 import { SlRocket } from 'react-icons/sl';
 import { IoIosEyeOff, IoIosEye } from "react-icons/io";
-import { FaGoogle, FaFacebookF, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import 'react-toastify/dist/ReactToastify.css';
 import astro from '../assets/login.png';
 
@@ -19,16 +18,16 @@ function Login() {
             const response = await axios.post('/api/users/login', { username, password });
             localStorage.setItem('token', response.data.token);
             console.log('Token saved:', response.data.token);
-            toast.success('Login successful!', {
-                position: toast.POSITION.TOP_RIGHT
-            });
+            // toast.success('Login successful!', {
+            //     position: toast.POSITION.TOP_RIGHT
+            // });
             navigate('/upload');
             console.log(response.data);
         } catch (error) {
             console.error(error);
-            toast.error('Login failed. Please check your credentials and try again.', {
-                position: toast.POSITION.TOP_RIGHT
-            });
+            // toast.error('Login failed. Please check your credentials and try again.', {
+            //     position: toast.POSITION.TOP_RIGHT
+            // });
         }
     };
 
