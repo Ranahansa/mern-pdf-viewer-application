@@ -21,6 +21,7 @@ function Login() {
             // toast.success('Login successful!', {
             //     position: toast.POSITION.TOP_RIGHT
             // });
+            setIsLoggedIn(true);
             navigate('/upload');
             console.log(response.data);
         } catch (error) {

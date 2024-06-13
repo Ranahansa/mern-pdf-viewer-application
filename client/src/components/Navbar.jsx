@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../assets/logo1.png';
 
 
-const Navbar = () => {
+const Navbar = ({ isLoggedIn, handleLogout }) => {
     return (
         <nav className="static py-1 bg-white rounded-md shadow-md">
             <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -34,18 +34,28 @@ const Navbar = () => {
                             >
                                 View Pdfs
                             </a>
-                            <a
-                                href="/login"
-                                className="px-3 py-2 ml-4 text-sm font-medium text-gray-500 rounded-md hover:bg-gray-200 hover:text-gray-700"
+                            {!isLoggedIn ? (
+                                <><a
+                                    href="/login"
+                                    className="px-3 py-2 ml-4 text-sm font-medium text-gray-500 rounded-md hover:bg-gray-200 hover:text-gray-700"
+                                >
+                                    Sign In
+                                </a>
+                                    <a
+                                        href="/register"
+                                        className="px-3 py-2 ml-4 text-sm font-medium text-white bg-indigo-500 rounded-md hover:bg-indigo-600"
+                                    >
+                                        Sign Up
+                                    </a>
+                                </>
+                            ) : (<button
+                                onClick={handleLogout}
+                                className="px-3 py-2 ml-4 text-sm font-medium text-white bg-red-500 rounded-md hover:bg-red-600"
                             >
-                                Sign In
-                            </a>
-                            <a
-                                href="/register"
-                                className="px-3 py-2 ml-4 text-sm font-medium text-white bg-indigo-500 rounded-md hover:bg-indigo-600"
-                            >
-                                Sign Up
-                            </a>
+                                Logout
+                            </button>
+                        )}
+                            
                         </div>
                     </div>
                     
