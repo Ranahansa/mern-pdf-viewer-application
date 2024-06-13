@@ -16,14 +16,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(requestLogger);
 
-app.use('/api/pdf/:id', (req, res, next) => {
-    const filePath = path.join(__dirname, 'uploads', `${req.params.id}.pdf`);
-    res.sendFile(filePath, (err) => {
-        if (err) {
-            next(err);
-        }
-    });
-});
+
 
 app.use('/api/users', users);
 app.use('/api/pdf', pdfRoutes);
