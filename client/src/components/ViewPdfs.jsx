@@ -51,9 +51,8 @@ function ViewPdfs() {
                         <li key={pdf._id} className="flex items-center justify-between p-4 border-b">
                             <div>
                                 <p className="text-lg font-semibold">{pdf.title}</p>
-                                <Document file={`/api/pdf/${pdf._id}`} className="w-full h-96">
-                                    <Page pageNumber={1} />
-                                </Document>
+                                <a href= {`http://localhost:5000/api/pdf/${pdf.path}.pdf`} target='_blank' rel='noopener noreferrer' >
+                                    {pdf.filename} (Click to View)</a>
                             </div>
                             <div className="flex space-x-2">
                                 <button
