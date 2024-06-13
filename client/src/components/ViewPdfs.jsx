@@ -49,7 +49,7 @@ function ViewPdfs() {
                         <li key={pdf._id} className="flex items-center justify-between p-4 border-b">
                             <div>
                                 <p className="text-lg font-semibold">{pdf.title}</p>
-                                <a href={`/api/pdf/${pdf._id}.pdf`} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                                <a href={`http:/localhost:5000/api/pdf/${pdf._id}.pdf`} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
                                     {pdf.filename}
                                 </a>
                             </div>
