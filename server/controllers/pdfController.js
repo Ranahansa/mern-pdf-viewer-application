@@ -37,7 +37,8 @@ const viewPdf = async (req, res) => {
             return res.status(404).json({message: 'Pdf not found'});
         }
 
-        res.sendFile(path.resolve(pdf.path))
+        const filePath = path.join(__dirname, '..', 'uploads', pdf.filename);
+        res.sendFile(filePath);
     } catch(err){
         return res.status(400).json({message: err.message});
     }
