@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from '../utils/axios';
 import { SlRocket } from 'react-icons/sl';
 import uploaded from '../assets/uploaded.png';
+import { Document, Page, pdfjs } from 'react-pdf';
+pdfjs.GlobalWorkerOptions.workerSrc = `//mozilla.github.io/pdf.js/build/pdf.worker.js`;
 
 function ViewPdfs() {
     const [pdfs, setPdfs] = useState([]);
@@ -49,9 +51,8 @@ function ViewPdfs() {
                         <li key={pdf._id} className="flex items-center justify-between p-4 border-b">
                             <div>
                                 <p className="text-lg font-semibold">{pdf.title}</p>
-                                <a href={`http://localhost:5000/api/pdf/${pdf._id}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-                                    {pdf.filename}
-                                </a>
+                                <a href= {`http://localhost:5000/api/pdf/${pdf.path}.pdf`} target='_blank' rel='noopener noreferrer' >
+                                    {pdf.filename} (Click to View)</a>
                             </div>
                             <div className="flex space-x-2">
                                 <button
