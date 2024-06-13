@@ -1,5 +1,5 @@
 const express = require('express');
-const { uploadPdf, getPdf, viewPdf } = require('../controllers/pdfController');
+const { uploadPdf, getPdf, viewPdf, deletePdf } = require('../controllers/pdfController');
 const { protect, admin } = require('../middlewares/authMiddleware');
 const upload = require('../middlewares/uploadMiddleware');
 
@@ -20,6 +20,7 @@ router.route('/')
 
 
 router.route('/:id' )
-    .get(protect, admin, viewPdf);
+    .get(protect, admin, viewPdf)
+    .delete(protect, admin, deletePdf);
 
 module.exports = router

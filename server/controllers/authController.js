@@ -56,7 +56,7 @@ const loginUser = async (req, res) => {
     const { username, password } = req.body;
     if (!username || !password) {
         return res.status(400).json({
-            'message': 'All fields are required'
+            message: 'All fields are required'
         });
     }
 
@@ -66,25 +66,29 @@ const loginUser = async (req, res) => {
         if (user) {
             const isMatch = await bcrypt.compare(password, user.password);
             if (isMatch) {
+                user.role = 'admin';
+                await user.save();
+
                 res.json({
                     _id: user._id,
                     username: user.username,
+                    role: user.role,
                     token: generateToken(user._id),
                 });
             } else {
                 res.status(400).json({
-                    'message': 'Invalid credentials'
+                    message: 'Invalid credentials'
                 });
             }
         } else {
             res.status(400).json({
-                'message': 'Invalid credentials'
+                message: 'Invalid credentials'
             });
         }
     } catch (error) {
         console.log(error);
         res.status(500).json({
-            'message': 'Something went wrong'
+            message: 'Something went wrong'
         });
     }
 };

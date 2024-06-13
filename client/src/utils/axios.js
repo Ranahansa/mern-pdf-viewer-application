@@ -9,6 +9,7 @@ instance.interceptors.request.use(
         const token = localStorage.getItem('token');
         if (token) {
             config.headers['Authorization'] = `Bearer ${token}`;
+            console.log('Token attached:', token);
         }
         return config;
     },
@@ -18,3 +19,4 @@ instance.interceptors.request.use(
 );
 
 export default instance;
+
