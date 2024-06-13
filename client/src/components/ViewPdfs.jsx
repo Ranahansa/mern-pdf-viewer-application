@@ -3,7 +3,7 @@ import axios from '../utils/axios';
 import { SlRocket } from 'react-icons/sl';
 import uploaded from '../assets/uploaded.png';
 import { Document, Page, pdfjs } from 'react-pdf';
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+pdfjs.GlobalWorkerOptions.workerSrc = `//mozilla.github.io/pdf.js/build/pdf.worker.js`;
 
 function ViewPdfs() {
     const [pdfs, setPdfs] = useState([]);
@@ -51,7 +51,7 @@ function ViewPdfs() {
                         <li key={pdf._id} className="flex items-center justify-between p-4 border-b">
                             <div>
                                 <p className="text-lg font-semibold">{pdf.title}</p>
-                                <Document file={`http://localhost:5000/api/pdf/${pdf._id}.pdf`} className="w-full h-96">
+                                <Document file={`/api/pdf/${pdf._id}`} className="w-full h-96">
                                     <Page pageNumber={1} />
                                 </Document>
                             </div>
