@@ -1,8 +1,15 @@
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo1.png';
 
 
 const Navbar = ({ isLoggedIn, handleLogout }) => {
+    const navigate = useNavigate();
+    
+    const handleLogoutClick = () => {
+        handleLogout();
+        navigate('/');
+    };
     return (
         <nav className="static py-1 bg-white rounded-md shadow-md">
             <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -49,7 +56,7 @@ const Navbar = ({ isLoggedIn, handleLogout }) => {
                                     </a>
                                 </>
                             ) : (<button
-                                onClick={handleLogout}
+                                    onClick={handleLogoutClick}
                                 className="px-3 py-2 ml-4 text-sm font-medium text-white bg-red-500 rounded-md hover:bg-red-600"
                             >
                                 Logout
